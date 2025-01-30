@@ -12,8 +12,6 @@ return {
             "sass",
             "scss",
             "less",
-            "javascript",
-            "typescript",
             "markdown",
             "ejs",
           },
