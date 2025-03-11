@@ -1,17 +1,48 @@
-return {
-  {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      print("Customizing nvim-cmp sources")
-      opts.snippet = {
-        expand = function() end, -- Disable snippet expansion
-      }
-      opts.sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "path" },
-      }
-      return opts
-    end,
-  },
-}
+-- return {
+--   {
+--     "hrsh7th/nvim-cmp",
+--     opts = function(_, opts)
+--       print("Customizing nvim-cmp sources")
+--
+--       -- Ensure snippet expansion is handled (to prevent breakage)
+--       opts.snippet = {
+--         expand = function(args) end, -- Leave empty if not using snippets
+--       }
+--
+--       -- Sort explicitly and push snippets to the bottom
+--       opts.sorting = {
+--         comparators = {
+--           require("cmp.config.compare").offset,
+--           require("cmp.config.compare").exact,
+--           require("cmp.config.compare").score,
+--           function(entry1, entry2)
+--             local kind1 = entry1:get_kind()
+--             local kind2 = entry2:get_kind()
+--             local snippet_kind = require("cmp.types").lsp.CompletionItemKind.Snippet
+--
+--             if kind1 == snippet_kind and kind2 ~= snippet_kind then
+--               return false -- Move snippets down
+--             elseif kind2 == snippet_kind and kind1 ~= snippet_kind then
+--               return true -- Keep other completions above snippets
+--             end
+--           end,
+--           require("cmp.config.compare").kind,
+--           require("cmp.config.compare").length,
+--           require("cmp.config.compare").order,
+--         },
+--       }
+--
+--       -- Explicitly set source priorities (higher = more important)
+--       opts.sources = {
+--         { name = "nvim_lsp" },
+--         { name = "buffer" },
+--         { name = "path" },
+--         { name = "luasnip" }, -- Push snippets down
+--       }
+--
+--       return opts
+--     end,
+--   },
+-- }
+--
+return {}
