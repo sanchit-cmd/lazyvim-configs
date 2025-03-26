@@ -4,12 +4,11 @@ return {
   dependencies = {
     { "nvim-telescope/telescope.nvim" }, -- optional
     { "folke/snacks.nvim" }, -- optional
-    { "echasnovski/mini.pick" }, -- optional
-    { "ibhagwan/fzf-lua" }, -- optional
+
     {
       "nvim-treesitter/nvim-treesitter",
       opts = {
-        ensure_installed = { "go" },
+        ensure_installed = { "go", "markdown" },
       },
     },
   },
