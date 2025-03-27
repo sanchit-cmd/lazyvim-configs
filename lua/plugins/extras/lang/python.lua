@@ -4,7 +4,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      -- vim.list_extend(opts.ensure_installed, { "pyright", "black", "ruff-lsp", "ruff" })
+      vim.list_extend(opts.ensure_installed, { "pyright", "black", "ruff-lsp", "ruff" })
       vim.list_extend(opts.ensure_installed, {
         "black",
         "ruff",
@@ -156,7 +156,13 @@ return {
     cmd = "VenvSelect",
     opts = {
       dap_enabled = true,
+      name = { "venv", ".venv", "env", ".env" }, -- Add any other names you use
+      search_venv_managers = false, -- optional if you don't use pipenv/poetry
+      search_workspace = true, -- ✅ this enables recursive search
+      parents = 2, -- search up to 2 directory levels upward
     },
-    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+    keys = {
+      { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" },
+    },
   },
 }
